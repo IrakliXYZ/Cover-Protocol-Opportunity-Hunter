@@ -524,6 +524,19 @@ def yearn():
 
 
 try:
-  print(yearn())
+  print("         Claim, NoClaim, Total")
+  print("Aave: ", aave())
+  print("Augur: ", augur())
+  print("Balancer: ", balancer())
+  print("barnbridge: ", barnbridge())
+  print("CoreVault: ", corevault())
+  print("Cream: ", cream())
+  print("Curve: ", curve())
+  print("Harvest: ", harvest())
+  print("Pickle: ", pickle())
+  print("Ren: ", ren())
+  print("Sushi: ", sushi())
+  print("Yearn: ", yearn())
+
 except:
   print("Unexpected problem occured")
