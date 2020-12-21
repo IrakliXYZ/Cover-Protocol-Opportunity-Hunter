@@ -108,16 +108,21 @@ def generate_url(claim_pool, noclaim_pool, claim_token, noclaim_token):
 
 
 for defi in myDefiList:
+    # Calls generate_url functio and assigns returned urls to variables
     claim_cover_url, claim_dai_url, noclaim_cover_url, noclaim_dai_url = generate_url(defi['claim_pool'], defi['noclaim_pool'], defi['claim_token'], defi['noclaim_token'])
 
+    # Makes an API call and gets the pool's token balance from the blockchain
     claim_cover_balance = int(requests.get(claim_cover_url).json()["result"])
     claim_dai_balance = int(requests.get(claim_dai_url).json()["result"])
 
-    claim_price = round(claim_dai_balance / claim_cover_balance * claim_multiplier, 4)
+    # Calculates the token price using balances, rounds to 4 decimals
+    claim_price = claim_dai_balance / claim_cover_balance * claim_multiplier
 
     noclaim_cover_balance = int(requests.get(noclaim_cover_url).json()["result"])
     noclaim_dai_balance = int(requests.get(noclaim_dai_url).json()["result"])
 
-    noclaim_price = round(noclaim_dai_balance / noclaim_cover_balance * noclaim_multiplier, 4)
+    noclaim_price = noclaim_dai_balance / noclaim_cover_balance * noclaim_multiplier
 
-    print(defi['name'], "Claim price =", claim_price, "NoClaim price =", noclaim_price, "Total =", claim_price + noclaim_price)
+    # Calculates the total price. If total > 1 there is an opportunity
+    total = claim_price + noclaim_price
+    print("{:<12} {:<8} {:<8} {:<8}".format(defi['name'], "{:.3f}".format(claim_price), "{:.3f}".format(noclaim_price), "{:.3f}".format(total)))
