@@ -1,7 +1,7 @@
 import requests
 
 # API from etherscan. Limit: 5 requests/sec
-API = "7KAXFQ7Q6ZUAQZU9S9ITS2HKSXQXMV8VGE"
+API = {YOUR API GOES HERE}  # Example: API = "7KAXFQ7Q6ZUAQZU9S9ITS2HKSXQXMV8VGE"
 
 # 80/20 pool = 4x multiplier, 98/2 = 49
 claim_multiplier = 4
@@ -94,6 +94,7 @@ myDefiList = [
     }
 ]
 
+print("{:<12} {:<8} {:<8} {:<8}".format('Name', 'Claim', 'NoClaim', 'Total'))
 
 def generate_url(claim_pool, noclaim_pool, claim_token, noclaim_token):
     # Get the balance of Claim token in the pool
